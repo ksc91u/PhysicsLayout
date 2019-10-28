@@ -526,17 +526,20 @@ public class Physics {
         return enablePhysics;
     }
 
+    public void giveRandomImpulse(){
+        giveRandomImpulse(1000);
+    }
     /**
      * Gives a random impulse to all the view bodies in the layout. Really just useful for testing,
      * but
      * try it out if you want :)
      */
-    public void giveRandomImpulse() {
+    public void giveRandomImpulse(Integer limit) {
         Body body;
         Vec2 impulse;
         Random random = new Random();
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            impulse = new Vec2(random.nextInt(1000) - 1000, random.nextInt(1000) - 1000);
+            impulse = new Vec2(random.nextInt(limit) - limit, random.nextInt(limit) - limit);
             body = (Body) viewGroup.getChildAt(i).getTag(R.id.physics_layout_body_tag);
             body.applyLinearImpulse(impulse, body.getPosition());
         }
